@@ -8,6 +8,7 @@ import { CategorySection } from '../components/CategorySection';
 import { ProductCatalog } from '../components/ProductCatalog';
 import { CustomOrdersSection } from '../components/CustomOrdersSection';
 import { AboutSection } from '../components/AboutSection';
+import { CourseSection } from '../components/CourseSection';
 import { SocialSection } from '../components/SocialSection';
 import { FaqSection } from '../components/FaqSection';
 import { Footer } from '../components/Footer';
@@ -45,6 +46,9 @@ export default function Home() {
 
       {/* About Gisa Section */}
       <AboutSection />
+
+      {/* Courses Section */}
+      <CourseSection />
 
       {/* Instagram & YouTube Social Section */}
       <SocialSection />
