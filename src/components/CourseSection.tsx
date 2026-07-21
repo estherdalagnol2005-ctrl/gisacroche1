@@ -8,8 +8,6 @@ import {
   Infinity as InfinityIcon,
   MessageCircle,
   PlayCircle,
-  ShoppingBag,
-  Sparkles,
 } from 'lucide-react';
 import { courses } from '../data/courses';
 
@@ -21,32 +19,23 @@ export const CourseSection: React.FC = () => {
       <div className="container">
         <div className="courses-heading">
           <span className="badge badge-terracota">
-            <BookOpen size={15} />
+            <BookOpen size={14} />
             Aprenda com a Gisa
           </span>
 
-          <h2 className="heading-serif">Mais de 10 anos de experiência, agora em aulas completas</h2>
+          <h2 className="heading-serif">Cursos para transformar experiência em novas criações</h2>
 
           <p>
-            A Gisa transformou tudo o que aprendeu ao longo dos anos em cursos detalhados,
-            pensados para ensinar cada etapa com clareza, cuidado e acompanhamento.
+            Aulas detalhadas, práticas e feitas com o cuidado de quem trabalha com crochê há mais de 10 anos.
           </p>
         </div>
 
         <div className="courses-list">
           {courses.map((course) => (
             <article className="course-card" key={course.id}>
-              <div className="course-visual" aria-hidden="true">
+              <div className="course-visual">
+                <img src={course.image} alt={`Capa do curso ${course.title}`} />
                 <span className="course-platform">Disponível na {course.platform}</span>
-                <div className="course-icon-ring">
-                  <ShoppingBag size={76} strokeWidth={1.4} />
-                </div>
-                <div className="course-visual-copy">
-                  <span>Curso online</span>
-                  <strong>Bolsa Barbie</strong>
-                </div>
-                <Sparkles className="sparkle sparkle-one" size={28} />
-                <Sparkles className="sparkle sparkle-two" size={20} />
               </div>
 
               <div className="course-content">
@@ -61,7 +50,7 @@ export const CourseSection: React.FC = () => {
                     return (
                       <div className="course-highlight" key={highlight}>
                         <span className="highlight-icon">
-                          <Icon size={18} />
+                          <Icon size={16} />
                         </span>
                         <span>{highlight}</span>
                       </div>
@@ -76,7 +65,7 @@ export const CourseSection: React.FC = () => {
                   className="course-button"
                 >
                   Conhecer o curso
-                  <ArrowUpRight size={18} />
+                  <ArrowUpRight size={16} />
                 </a>
               </div>
             </article>
@@ -86,158 +75,87 @@ export const CourseSection: React.FC = () => {
 
       <style jsx>{`
         .courses-section {
-          padding: 6rem 0;
+          padding: 4.25rem 0;
           background: var(--color-surface-soft);
           position: relative;
           overflow: hidden;
         }
 
-        .courses-section::before {
-          content: '';
-          position: absolute;
-          width: 440px;
-          height: 440px;
-          border-radius: 50%;
-          top: -250px;
-          right: -120px;
-          background: rgba(232, 165, 152, 0.2);
-          filter: blur(4px);
-        }
-
         .courses-heading {
-          max-width: 760px;
-          margin: 0 auto 3rem;
+          max-width: 650px;
+          margin: 0 auto 2.15rem;
           text-align: center;
           position: relative;
           z-index: 1;
         }
 
         .courses-heading h2 {
-          margin: 1rem 0 1.1rem;
-          font-size: clamp(2.25rem, 5vw, 3.5rem);
+          margin: 0.8rem 0 0.75rem;
+          font-size: clamp(2rem, 4vw, 2.8rem);
           line-height: 1.08;
           color: var(--color-text);
         }
 
         .courses-heading p {
-          max-width: 680px;
+          max-width: 590px;
           margin: 0 auto;
           color: var(--color-text-muted);
-          font-size: 1.05rem;
-          line-height: 1.7;
+          font-size: 0.96rem;
+          line-height: 1.6;
         }
 
         .courses-list {
           display: grid;
-          gap: 2rem;
+          gap: 1.4rem;
           position: relative;
           z-index: 1;
         }
 
         .course-card {
+          width: min(100%, 980px);
+          margin: 0 auto;
           display: grid;
-          grid-template-columns: minmax(300px, 0.9fr) minmax(320px, 1.1fr);
-          min-height: 480px;
+          grid-template-columns: minmax(310px, 1fr) minmax(320px, 0.9fr);
           overflow: hidden;
-          border-radius: calc(var(--radius-lg) + 6px);
+          border-radius: var(--radius-lg);
           background: var(--color-surface);
           border: 1px solid var(--color-border);
-          box-shadow: var(--shadow-lg);
+          box-shadow: var(--shadow-md);
         }
 
         .course-visual {
-          min-height: 100%;
-          padding: 2rem;
           position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+          aspect-ratio: 16 / 9;
+          min-height: 100%;
           overflow: hidden;
-          color: #fff;
-          background:
-            radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3), transparent 28%),
-            linear-gradient(145deg, #e9a3b3 0%, #c86d7f 45%, #6b2737 100%);
+          background: var(--color-pink-light);
         }
 
-        .course-visual::after {
-          content: '';
-          position: absolute;
-          width: 270px;
-          height: 270px;
-          border-radius: 50%;
-          border: 1px solid rgba(255, 255, 255, 0.22);
-          transform: translate(80px, -90px);
+        .course-visual img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .course-platform {
           position: absolute;
-          top: 1.5rem;
-          left: 1.5rem;
-          padding: 0.5rem 0.8rem;
+          top: 0.9rem;
+          left: 0.9rem;
+          padding: 0.38rem 0.68rem;
           border-radius: var(--radius-full);
-          background: rgba(255, 255, 255, 0.16);
-          border: 1px solid rgba(255, 255, 255, 0.24);
+          background: rgba(255, 255, 255, 0.88);
+          color: var(--color-deep);
+          border: 1px solid rgba(107, 39, 55, 0.12);
           backdrop-filter: blur(8px);
-          font-size: 0.75rem;
+          font-size: 0.68rem;
           font-weight: 700;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.035em;
           text-transform: uppercase;
-        }
-
-        .course-icon-ring {
-          width: 178px;
-          height: 178px;
-          border-radius: 50%;
-          display: grid;
-          place-items: center;
-          background: rgba(255, 255, 255, 0.14);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          box-shadow: inset 0 0 0 14px rgba(255, 255, 255, 0.06);
-          margin-bottom: 1.5rem;
-        }
-
-        .course-visual-copy {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          position: relative;
-          z-index: 1;
-        }
-
-        .course-visual-copy span {
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 0.16em;
-          opacity: 0.82;
-          margin-bottom: 0.25rem;
-        }
-
-        .course-visual-copy strong {
-          font-family: var(--font-serif);
-          font-size: clamp(2.2rem, 4vw, 3.1rem);
-          font-weight: 600;
-          line-height: 1;
-        }
-
-        .sparkle {
-          position: absolute;
-          opacity: 0.82;
-        }
-
-        .sparkle-one {
-          top: 25%;
-          right: 14%;
-        }
-
-        .sparkle-two {
-          bottom: 18%;
-          left: 16%;
         }
 
         .course-content {
-          padding: clamp(2rem, 5vw, 4rem);
+          padding: 2.1rem 2rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -245,45 +163,45 @@ export const CourseSection: React.FC = () => {
 
         .course-eyebrow {
           color: var(--color-primary);
-          font-size: 0.8rem;
+          font-size: 0.72rem;
           font-weight: 700;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.09em;
           text-transform: uppercase;
-          margin-bottom: 0.7rem;
+          margin-bottom: 0.48rem;
         }
 
         .course-content h3 {
           color: var(--color-text);
-          font-size: clamp(2.2rem, 4vw, 3rem);
+          font-size: clamp(1.8rem, 3vw, 2.35rem);
           line-height: 1.05;
-          margin-bottom: 1.1rem;
+          margin-bottom: 0.8rem;
         }
 
         .course-description {
           color: var(--color-text-muted);
-          font-size: 1.03rem;
-          line-height: 1.75;
-          margin-bottom: 1.7rem;
+          font-size: 0.92rem;
+          line-height: 1.62;
+          margin-bottom: 1.15rem;
         }
 
         .course-highlights {
           display: grid;
-          gap: 0.85rem;
-          margin-bottom: 2rem;
+          gap: 0.62rem;
+          margin-bottom: 1.35rem;
         }
 
         .course-highlight {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
+          gap: 0.62rem;
           color: var(--color-text);
-          font-size: 0.95rem;
+          font-size: 0.84rem;
           font-weight: 600;
         }
 
         .highlight-icon {
-          width: 38px;
-          height: 38px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           display: grid;
           place-items: center;
@@ -297,68 +215,75 @@ export const CourseSection: React.FC = () => {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 0.65rem;
-          padding: 0.95rem 1.55rem;
+          gap: 0.52rem;
+          padding: 0.78rem 1.2rem;
           border-radius: var(--radius-full);
           background: var(--color-deep);
           color: #fff;
-          font-size: 0.95rem;
+          font-size: 0.85rem;
           font-weight: 700;
-          box-shadow: var(--shadow-md);
+          box-shadow: var(--shadow-sm);
           transition: var(--transition);
         }
 
         .course-button:hover {
           background: var(--color-deep-hover);
           transform: translateY(-2px);
-          box-shadow: var(--shadow-hover);
         }
 
         @media (max-width: 820px) {
           .courses-section {
-            padding: 4.5rem 0;
+            padding: 3.5rem 0;
           }
 
           .course-card {
             grid-template-columns: 1fr;
-            min-height: 0;
+            width: min(100%, 620px);
           }
 
           .course-visual {
-            min-height: 360px;
+            min-height: auto;
           }
         }
 
         @media (max-width: 520px) {
+          .courses-section {
+            padding: 2.9rem 0;
+          }
+
           .courses-heading {
             text-align: left;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .courses-heading h2 {
+            font-size: clamp(1.75rem, 8vw, 2.15rem);
+            margin-top: 0.7rem;
           }
 
           .courses-heading p {
-            font-size: 0.98rem;
+            font-size: 0.9rem;
           }
 
           .course-card {
-            border-radius: var(--radius-lg);
-          }
-
-          .course-visual {
-            min-height: 315px;
-            padding: 1.5rem;
-          }
-
-          .course-icon-ring {
-            width: 148px;
-            height: 148px;
+            border-radius: var(--radius-md);
           }
 
           .course-content {
-            padding: 1.75rem 1.35rem 2rem;
+            padding: 1.45rem 1.2rem 1.55rem;
+          }
+
+          .course-content h3 {
+            font-size: 1.75rem;
+          }
+
+          .course-description {
+            font-size: 0.88rem;
           }
 
           .course-button {
             width: 100%;
+            padding: 0.82rem 1rem;
           }
         }
       `}</style>
