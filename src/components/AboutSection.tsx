@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { getWhatsAppUrl } from '../data/products';
-import { Heart, Sparkles, Award, Scissors } from 'lucide-react';
+import { BookOpen, Clock3, Heart, Scissors } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
@@ -23,7 +22,6 @@ export const AboutSection: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          {/* Left Column: Artisan Image Collage */}
           <div style={{ position: 'relative' }}>
             <div
               style={{
@@ -35,12 +33,11 @@ export const AboutSection: React.FC = () => {
             >
               <img
                 src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=800&q=80"
-                alt="Sobre a Gisa Crochê - Processo Artesanal"
+                alt="Sobre a Gisa Crochê e seu processo artesanal"
                 style={{ width: '100%', height: '440px', objectFit: 'cover' }}
               />
             </div>
 
-            {/* Quote Badge */}
             <div
               style={{
                 position: 'absolute',
@@ -63,15 +60,21 @@ export const AboutSection: React.FC = () => {
                   marginBottom: '0.4rem',
                 }}
               >
-                "O crochê é a minha forma de traduzir afeto e sofisticação em nós e tramas únicos."
+                “Amo o que faço e quero ensinar cada detalhe que aprendi ao longo desses anos.”
               </p>
-              <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-primary)' }}>
-                — Gisa Dalagnol
+              <p
+                style={{
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  color: 'var(--color-primary)',
+                }}
+              >
+                — Giselle, Gisa Crochê
               </p>
             </div>
           </div>
 
-          {/* Right Column: Story & Principles */}
           <div>
             <span className="badge badge-terracota" style={{ marginBottom: '1rem' }}>
               Nossa História & Essência
@@ -88,15 +91,33 @@ export const AboutSection: React.FC = () => {
               Sobre a Gisa Crochê
             </h2>
 
-            <p style={{ fontSize: '1.075rem', color: 'var(--color-text-muted)', marginBottom: '1.25rem', lineHeight: 1.7 }}>
-              A <strong>Gisa Crochê</strong> nasceu da paixão em transformar fios nobres em peças exclusivas cheias de estilo e personalidade. Cada modelo é desenhado e confeccionado manualmente, unindo técnicas tradicionais de crocheteria com um design contemporâneo, elegante e atemporal.
+            <p
+              style={{
+                fontSize: '1.075rem',
+                color: 'var(--color-text-muted)',
+                marginBottom: '1.25rem',
+                lineHeight: 1.7,
+              }}
+            >
+              Meu nome é <strong>Giselle</strong> e sou a artesã e professora por trás do Ateliê Gisa Crochê.
+              Faço crochê há mais de 10 anos e amo transformar fios em peças únicas, produzidas à mão
+              com cuidado, criatividade e personalidade.
             </p>
 
-            <p style={{ fontSize: '1.025rem', color: 'var(--color-text-muted)', marginBottom: '2rem', lineHeight: 1.7 }}>
-              Acreditamos na beleza do consumo consciente e na exclusividade de ter uma peça sob medida criada especialmente para você. Das bolsas com design orgânico aos croppeds e vestidos rendados, colocamos intenção e cuidado em cada detalhe.
+            <p
+              style={{
+                fontSize: '1.025rem',
+                color: 'var(--color-text-muted)',
+                marginBottom: '2rem',
+                lineHeight: 1.7,
+              }}
+            >
+              Depois de anos aperfeiçoando técnicas, criando encomendas e compartilhando conteúdos,
+              decidi transformar esse conhecimento em aulas completas. Ensino cada etapa com calma e
+              detalhes para que outras pessoas também possam criar suas próprias peças e descobrir novas
+              possibilidades com o crochê.
             </p>
 
-            {/* Brand Values Checklist */}
             <div
               style={{
                 display: 'grid',
@@ -106,38 +127,36 @@ export const AboutSection: React.FC = () => {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <Clock3 size={20} style={{ color: 'var(--color-primary)' }} />
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-text)' }}>
+                  Mais de 10 anos de experiência
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                 <Scissors size={20} style={{ color: 'var(--color-primary)' }} />
                 <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-text)' }}>
-                  100% Feito à Mão
+                  Peças feitas à mão
                 </span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Sparkles size={20} style={{ color: 'var(--color-primary)' }} />
+                <BookOpen size={20} style={{ color: 'var(--color-primary)' }} />
                 <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-text)' }}>
-                  Fios Nobres & Leves
-                </span>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Award size={20} style={{ color: 'var(--color-primary)' }} />
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-text)' }}>
-                  Modelos Autorais
+                  Cursos passo a passo
                 </span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                 <Heart size={20} style={{ color: 'var(--color-primary)' }} />
                 <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-text)' }}>
-                  Atendimento Afetivo
+                  Encomendas personalizadas
                 </span>
               </div>
             </div>
 
             <a
-              href={getWhatsAppUrl('Conhecer mais sobre o trabalho da Gisa')}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#cursos"
               style={{
                 backgroundColor: 'var(--color-primary)',
                 color: '#FFFFFF',
@@ -154,7 +173,8 @@ export const AboutSection: React.FC = () => {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-primary-hover)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-primary)')}
             >
-              <span>Conversar com a Gisa</span>
+              <BookOpen size={18} />
+              <span>Conhecer os cursos</span>
             </a>
           </div>
         </div>
