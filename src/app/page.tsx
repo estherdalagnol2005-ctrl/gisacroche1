@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { AnnouncementBar } from '../components/AnnouncementBar';
 import { Navbar } from '../components/Navbar';
 import { HeroSection } from '../components/HeroSection';
-import { CategorySection } from '../components/CategorySection';
+import { BagMarquee } from '../components/BagMarquee';
 import { ProductCatalog } from '../components/ProductCatalog';
 import { CustomOrdersSection } from '../components/CustomOrdersSection';
 import { AboutSection } from '../components/AboutSection';
@@ -17,49 +17,26 @@ import { WhatsAppFloat } from '../components/WhatsAppFloat';
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('todos');
 
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-  };
-
   return (
     <main style={{ minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
-      {/* Top Announcement Bar */}
       <AnnouncementBar />
-
-      {/* Header & Navbar */}
       <Navbar />
-
-      {/* Hero Section */}
       <HeroSection />
 
-      {/* Categories Showcase */}
-      <CategorySection onSelectCategory={handleSelectCategory} />
+      {/* Faixa visual compacta no lugar da antiga dobra de categorias */}
+      <BagMarquee />
 
-      {/* Product Catalog */}
       <ProductCatalog
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />
 
-      {/* Custom Orders / Sob Medida Section */}
       <CustomOrdersSection />
-
-      {/* About Gisa Section */}
       <AboutSection />
-
-      {/* Courses Section */}
       <CourseSection />
-
-      {/* Instagram & YouTube Social Section */}
       <SocialSection />
-
-      {/* Frequently Asked Questions */}
       <FaqSection />
-
-      {/* Site Footer */}
       <Footer />
-
-      {/* Floating WhatsApp CTA */}
       <WhatsAppFloat />
     </main>
   );
