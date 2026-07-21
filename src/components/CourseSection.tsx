@@ -75,47 +75,42 @@ export const CourseSection: React.FC = () => {
 
       <style jsx>{`
         .courses-section {
-          padding: 4.25rem 0;
+          padding: 3.75rem 0;
           background: var(--color-surface-soft);
-          position: relative;
           overflow: hidden;
         }
 
         .courses-heading {
           max-width: 650px;
-          margin: 0 auto 2.15rem;
+          margin: 0 auto 1.9rem;
           text-align: center;
-          position: relative;
-          z-index: 1;
         }
 
         .courses-heading h2 {
-          margin: 0.8rem 0 0.75rem;
-          font-size: clamp(2rem, 4vw, 2.8rem);
+          margin: 0.75rem 0 0.65rem;
+          font-size: clamp(1.9rem, 3.8vw, 2.65rem);
           line-height: 1.08;
           color: var(--color-text);
         }
 
         .courses-heading p {
-          max-width: 590px;
+          max-width: 580px;
           margin: 0 auto;
           color: var(--color-text-muted);
-          font-size: 0.96rem;
-          line-height: 1.6;
+          font-size: 0.94rem;
+          line-height: 1.58;
         }
 
         .courses-list {
           display: grid;
-          gap: 1.4rem;
-          position: relative;
-          z-index: 1;
+          gap: 1.25rem;
         }
 
         .course-card {
-          width: min(100%, 980px);
+          width: min(100%, 920px);
           margin: 0 auto;
-          display: grid;
-          grid-template-columns: minmax(310px, 1fr) minmax(320px, 0.9fr);
+          display: flex;
+          align-items: stretch;
           overflow: hidden;
           border-radius: var(--radius-lg);
           background: var(--color-surface);
@@ -123,39 +118,51 @@ export const CourseSection: React.FC = () => {
           box-shadow: var(--shadow-md);
         }
 
+        .course-visual,
+        .course-content {
+          min-width: 0;
+        }
+
         .course-visual {
           position: relative;
-          aspect-ratio: 16 / 9;
-          min-height: 100%;
+          flex: 1.05 1 0;
+          min-height: 315px;
           overflow: hidden;
           background: var(--color-pink-light);
         }
 
         .course-visual img {
+          position: absolute;
+          inset: 0;
           display: block;
           width: 100%;
           height: 100%;
+          max-width: 100%;
           object-fit: cover;
+          object-position: center;
         }
 
         .course-platform {
           position: absolute;
-          top: 0.9rem;
-          left: 0.9rem;
-          padding: 0.38rem 0.68rem;
+          top: 0.85rem;
+          left: 0.85rem;
+          z-index: 1;
+          padding: 0.36rem 0.65rem;
           border-radius: var(--radius-full);
-          background: rgba(255, 255, 255, 0.88);
+          background: rgba(255, 255, 255, 0.9);
           color: var(--color-deep);
           border: 1px solid rgba(107, 39, 55, 0.12);
           backdrop-filter: blur(8px);
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 700;
           letter-spacing: 0.035em;
           text-transform: uppercase;
+          white-space: nowrap;
         }
 
         .course-content {
-          padding: 2.1rem 2rem;
+          flex: 0.95 1 0;
+          padding: 1.85rem 1.8rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -163,45 +170,45 @@ export const CourseSection: React.FC = () => {
 
         .course-eyebrow {
           color: var(--color-primary);
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 700;
           letter-spacing: 0.09em;
           text-transform: uppercase;
-          margin-bottom: 0.48rem;
+          margin-bottom: 0.42rem;
         }
 
         .course-content h3 {
           color: var(--color-text);
-          font-size: clamp(1.8rem, 3vw, 2.35rem);
+          font-size: clamp(1.7rem, 2.7vw, 2.2rem);
           line-height: 1.05;
-          margin-bottom: 0.8rem;
+          margin-bottom: 0.7rem;
         }
 
         .course-description {
           color: var(--color-text-muted);
-          font-size: 0.92rem;
-          line-height: 1.62;
-          margin-bottom: 1.15rem;
+          font-size: 0.88rem;
+          line-height: 1.58;
+          margin-bottom: 1rem;
         }
 
         .course-highlights {
           display: grid;
-          gap: 0.62rem;
-          margin-bottom: 1.35rem;
+          gap: 0.55rem;
+          margin-bottom: 1.15rem;
         }
 
         .course-highlight {
           display: flex;
           align-items: center;
-          gap: 0.62rem;
+          gap: 0.58rem;
           color: var(--color-text);
-          font-size: 0.84rem;
+          font-size: 0.81rem;
           font-weight: 600;
         }
 
         .highlight-icon {
-          width: 32px;
-          height: 32px;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
           display: grid;
           place-items: center;
@@ -215,12 +222,12 @@ export const CourseSection: React.FC = () => {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 0.52rem;
-          padding: 0.78rem 1.2rem;
+          gap: 0.48rem;
+          padding: 0.74rem 1.1rem;
           border-radius: var(--radius-full);
           background: var(--color-deep);
           color: #fff;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 700;
           box-shadow: var(--shadow-sm);
           transition: var(--transition);
@@ -233,36 +240,37 @@ export const CourseSection: React.FC = () => {
 
         @media (max-width: 820px) {
           .courses-section {
-            padding: 3.5rem 0;
+            padding: 3.2rem 0;
           }
 
           .course-card {
-            grid-template-columns: 1fr;
             width: min(100%, 620px);
+            flex-direction: column;
           }
 
           .course-visual {
-            min-height: auto;
+            flex: none;
+            min-height: 0;
+            aspect-ratio: 16 / 9;
           }
         }
 
         @media (max-width: 520px) {
           .courses-section {
-            padding: 2.9rem 0;
+            padding: 2.65rem 0;
           }
 
           .courses-heading {
             text-align: left;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.35rem;
           }
 
           .courses-heading h2 {
-            font-size: clamp(1.75rem, 8vw, 2.15rem);
-            margin-top: 0.7rem;
+            font-size: clamp(1.65rem, 7.5vw, 2rem);
           }
 
           .courses-heading p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
           }
 
           .course-card {
@@ -270,20 +278,20 @@ export const CourseSection: React.FC = () => {
           }
 
           .course-content {
-            padding: 1.45rem 1.2rem 1.55rem;
+            padding: 1.3rem 1.1rem 1.4rem;
           }
 
           .course-content h3 {
-            font-size: 1.75rem;
+            font-size: 1.65rem;
           }
 
           .course-description {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
           }
 
           .course-button {
             width: 100%;
-            padding: 0.82rem 1rem;
+            padding: 0.8rem 1rem;
           }
         }
       `}</style>
