@@ -261,7 +261,7 @@ export const HeroSection: React.FC = () => {
             >
               <span style={{ fontSize: '1.2rem' }}>✨</span>
               <div>
-                <p style={{ margin: 0, leading: 1.1 }}>Acabamento Impecável</p>
+                <p style={{ margin: 0, lineHeight: 1.1 }}>Acabamento Impecável</p>
                 <p style={{ margin: 0, fontSize: '0.725rem', opacity: 0.8, fontWeight: 400 }}>Fios selecionados à mão</p>
               </div>
             </div>
