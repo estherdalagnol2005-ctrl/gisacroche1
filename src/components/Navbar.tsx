@@ -24,10 +24,10 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Início', href: '#inicio' },
-    { label: 'Categorias', href: '#categorias' },
     { label: 'Catálogo', href: '#catalogo' },
     { label: 'Sob Medida', href: '#sob-medida' },
     { label: 'Sobre a Gisa', href: '#sobre' },
+    { label: 'Cursos', href: '#cursos' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -54,17 +54,15 @@ export const Navbar: React.FC = () => {
           paddingBottom: '1rem',
         }}
       >
-        {/* Brand Logo */}
         <a href="#inicio" style={{ display: 'flex', alignItems: 'center' }}>
           <Logo size="md" />
         </a>
 
-        {/* Desktop Navigation Links */}
         <nav
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '2.25rem',
+            gap: '2rem',
           }}
           className="desktop-nav"
         >
@@ -86,7 +84,6 @@ export const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Action Button & Mobile Toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <a
             href={getWhatsAppUrl()}
@@ -118,7 +115,6 @@ export const Navbar: React.FC = () => {
             <span>Falar com a Gisa</span>
           </a>
 
-          {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="mobile-toggle"
@@ -126,7 +122,7 @@ export const Navbar: React.FC = () => {
             style={{
               padding: '0.5rem',
               color: 'var(--color-text)',
-              display: 'none', // Managed by responsive CSS
+              display: 'none',
             }}
           >
             {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -134,7 +130,6 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div
           style={{
@@ -189,7 +184,6 @@ export const Navbar: React.FC = () => {
         </div>
       )}
 
-      {/* Embedded Responsive Media Queries */}
       <style jsx>{`
         @media (max-width: 900px) {
           .desktop-nav {
