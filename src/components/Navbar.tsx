@@ -1,196 +1,305 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { getWhatsAppUrl } from '../data/products';
-import { Menu, X, MessageCircle } from 'lucide-react';
+import { Menu, MessageCircle, Search, X } from 'lucide-react';
+
+const navLinks = [
+  { label: 'Início', href: '#inicio' },
+  { label: 'Catálogo', href: '#catalogo' },
+  { label: 'Sob Medida', href: '#sob-medida' },
+  { label: 'Sobre a Gisa', href: '#sobre' },
+  { label: 'Cursos', href: '#cursos' },
+  { label: 'FAQ', href: '#faq' },
+];
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 18);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Catálogo', href: '#catalogo' },
-    { label: 'Sob Medida', href: '#sob-medida' },
-    { label: 'Sobre a Gisa', href: '#sobre' },
-    { label: 'Cursos', href: '#cursos' },
-    { label: 'FAQ', href: '#faq' },
-  ];
+  const closeMenu = () => setMobileMenuOpen(false);
+
+  const scrollToCatalog = () => {
+    document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 40,
-        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'var(--color-bg)',
-        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        boxShadow: isScrolled ? 'var(--shadow-sm)' : 'none',
-        borderBottom: '1px solid var(--color-border-light)',
-        transition: 'var(--transition)',
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
-        }}
-      >
-        <a href="#inicio" style={{ display: 'flex', alignItems: 'center' }}>
+    <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
+      <div className="desktop-header container">
+        <a href="#inicio" aria-label="Ir para o início">
           <Logo size="md" />
         </a>
 
-        <nav
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '2rem',
-          }}
-          className="desktop-nav"
-        >
+        <nav className="desktop-nav" aria-label="Navegação principal">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              style={{
-                fontSize: '0.925rem',
-                fontWeight: 500,
-                color: 'var(--color-text)',
-                transition: 'var(--transition)',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-primary)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text)')}
-            >
+            <a key={link.label} href={link.href}>
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <a className="desktop-whatsapp" href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+          <MessageCircle size={16} />
+          Falar com a Gisa
+        </a>
+      </div>
+
+      <div className="mobile-header">
+        <button
+          className="mobile-icon-button"
+          type="button"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+
+        <a className="mobile-logo" href="#inicio" aria-label="Gisa Crochê - início" onClick={closeMenu}>
+          <Logo size="sm" />
+        </a>
+
+        <div className="mobile-actions">
+          <button className="mobile-icon-button" type="button" onClick={scrollToCatalog} aria-label="Ir para o catálogo">
+            <Search size={20} />
+          </button>
           <a
+            className="mobile-icon-button"
             href={getWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              backgroundColor: 'var(--color-primary)',
-              color: '#FFFFFF',
-              padding: '0.65rem 1.35rem',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              boxShadow: 'var(--shadow-sm)',
-              transition: 'var(--transition)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-primary-hover)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
+            aria-label="Falar com a Gisa pelo WhatsApp"
           >
-            <MessageCircle size={16} />
-            <span>Falar com a Gisa</span>
+            <MessageCircle size={20} />
           </a>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="mobile-toggle"
-            aria-label="Abrir Menu"
-            style={{
-              padding: '0.5rem',
-              color: 'var(--color-text)',
-              display: 'none',
-            }}
-          >
-            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
         </div>
       </div>
 
+      <div className="mobile-trust-strip">
+        <strong>Mais de 10 anos de experiência</strong>
+        <span>•</span>
+        <span>Peças autorais e sob medida</span>
+      </div>
+
       {mobileMenuOpen && (
-        <div
-          style={{
-            backgroundColor: 'var(--color-surface)',
-            borderTop: '1px solid var(--color-border)',
-            padding: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.25rem',
-            animation: 'fadeIn 0.3s ease-out',
-          }}
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              style={{
-                fontSize: '1.05rem',
-                fontWeight: 600,
-                color: 'var(--color-text)',
-                padding: '0.5rem 0',
-                borderBottom: '1px solid var(--color-border-light)',
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{
-              backgroundColor: 'var(--color-whatsapp)',
-              color: '#FFFFFF',
-              padding: '0.85rem',
-              borderRadius: 'var(--radius-md)',
-              fontSize: '1rem',
-              fontWeight: 600,
-              textAlign: 'center',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              marginTop: '0.5rem',
-            }}
-          >
-            <MessageCircle size={18} />
-            <span>Fazer Encomenda no WhatsApp</span>
+        <div className="mobile-menu-panel">
+          <nav aria-label="Menu mobile">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <a className="mobile-menu-cta" href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+            <MessageCircle size={17} /> Fazer encomenda
           </a>
         </div>
       )}
 
       <style jsx>{`
+        .site-header {
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          background: var(--color-bg);
+          border-bottom: 1px solid var(--color-border-light);
+          transition: background 180ms ease, box-shadow 180ms ease;
+        }
+
+        .site-header.is-scrolled {
+          background: rgba(255, 255, 255, 0.96);
+          backdrop-filter: blur(14px);
+          box-shadow: 0 4px 20px rgba(44, 34, 30, 0.07);
+        }
+
+        .desktop-header {
+          min-height: 84px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+        }
+
+        .desktop-nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(1rem, 2.2vw, 2rem);
+        }
+
+        .desktop-nav a {
+          color: var(--color-text);
+          font-size: 0.9rem;
+          font-weight: 500;
+          transition: color 180ms ease;
+          white-space: nowrap;
+        }
+
+        .desktop-nav a:hover {
+          color: var(--color-primary);
+        }
+
+        .desktop-whatsapp {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.48rem;
+          padding: 0.68rem 1.2rem;
+          border-radius: var(--radius-full);
+          background: var(--color-primary);
+          color: #fff;
+          font-size: 0.84rem;
+          font-weight: 700;
+          box-shadow: var(--shadow-sm);
+          transition: transform 180ms ease, background 180ms ease;
+          white-space: nowrap;
+        }
+
+        .desktop-whatsapp:hover {
+          background: var(--color-primary-hover);
+          transform: translateY(-2px);
+        }
+
+        .mobile-header,
+        .mobile-trust-strip,
+        .mobile-menu-panel {
+          display: none;
+        }
+
         @media (max-width: 900px) {
-          .desktop-nav {
-            display: none !important;
+          .desktop-header {
+            display: none;
           }
-          :global(.mobile-toggle) {
-            display: flex !important;
+
+          .mobile-header {
+            position: relative;
+            min-height: 58px;
+            padding: 0 13px;
+            display: grid;
+            grid-template-columns: 72px 1fr 72px;
+            align-items: center;
+            background: #fff;
+          }
+
+          .mobile-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 58px;
+            overflow: hidden;
+          }
+
+          .mobile-logo :global(span) {
+            transform: scale(0.76);
+          }
+
+          .mobile-icon-button {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #171311;
+            border-radius: 50%;
+            transition: background 160ms ease;
+          }
+
+          .mobile-icon-button:hover {
+            background: var(--color-surface-soft);
+          }
+
+          .mobile-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 0;
+          }
+
+          .mobile-trust-strip {
+            min-height: 40px;
+            padding: 0.42rem 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.42rem;
+            background: #fff;
+            border-top: 1px solid var(--color-border-light);
+            color: var(--color-text);
+            font-size: 0.67rem;
+            text-align: center;
+            line-height: 1.2;
+          }
+
+          .mobile-trust-strip strong {
+            font-weight: 800;
+          }
+
+          .mobile-trust-strip span:last-child {
+            color: var(--color-text-muted);
+          }
+
+          .mobile-menu-panel {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            display: block;
+            padding: 1rem 1rem 1.2rem;
+            background: #fff;
+            border-top: 1px solid var(--color-border-light);
+            box-shadow: 0 18px 35px rgba(44, 34, 30, 0.14);
+            animation: mobileMenuIn 180ms ease-out;
+          }
+
+          .mobile-menu-panel nav {
+            display: grid;
+          }
+
+          .mobile-menu-panel nav a {
+            padding: 0.8rem 0.25rem;
+            border-bottom: 1px solid var(--color-border-light);
+            color: var(--color-text);
+            font-size: 0.94rem;
+            font-weight: 650;
+          }
+
+          .mobile-menu-cta {
+            margin-top: 1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.82rem 1rem;
+            border-radius: 10px;
+            background: var(--color-deep);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 700;
+          }
+        }
+
+        @media (max-width: 390px) {
+          .mobile-trust-strip {
+            font-size: 0.62rem;
+          }
+        }
+
+        @keyframes mobileMenuIn {
+          from {
+            opacity: 0;
+            transform: translateY(-6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       `}</style>
