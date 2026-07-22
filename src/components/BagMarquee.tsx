@@ -4,7 +4,7 @@ import React from 'react';
 import { PRODUCTS } from '../data/products';
 
 const bagImages = PRODUCTS.filter((product) => product.category === 'bolsas');
-const marqueeItems = [...bagImages, ...bagImages, ...bagImages];
+const marqueeItems = [...bagImages, ...bagImages, ...bagImages, ...bagImages];
 
 export const BagMarquee: React.FC = () => {
   return (
@@ -26,18 +26,17 @@ export const BagMarquee: React.FC = () => {
         .bag-marquee {
           width: 100%;
           overflow: hidden;
-          padding: 1.2rem 0 1.35rem;
-          background: var(--color-surface);
-          border-top: 1px solid var(--color-border-light);
+          padding: 1rem 0 1.15rem;
+          background: #fff;
           border-bottom: 1px solid var(--color-border-light);
         }
 
         .bag-marquee-track {
-          display: flex;
           width: max-content;
-          gap: 1rem;
-          padding: 0 1rem;
-          animation: bagMarquee 32s linear infinite;
+          display: flex;
+          gap: 0.9rem;
+          padding: 0 0.9rem;
+          animation: bagMarquee 34s linear infinite;
           will-change: transform;
         }
 
@@ -46,60 +45,56 @@ export const BagMarquee: React.FC = () => {
         }
 
         .bag-marquee-item {
-          width: 118px;
-          height: 145px;
+          width: 112px;
+          height: 138px;
           flex: 0 0 auto;
           overflow: hidden;
-          border-radius: 12px;
+          border-radius: 10px;
           background: var(--color-pink-light);
-          box-shadow: 0 6px 18px rgba(68, 38, 32, 0.08);
-          transition: transform 220ms ease, box-shadow 220ms ease;
+          box-shadow: 0 4px 14px rgba(68, 38, 32, 0.08);
+          transition: transform 180ms ease;
         }
 
         .bag-marquee-item:hover {
           transform: translateY(-3px);
-          box-shadow: 0 10px 24px rgba(68, 38, 32, 0.14);
         }
 
         .bag-marquee-item img {
-          display: block;
           width: 100%;
           height: 100%;
+          display: block;
           object-fit: cover;
         }
 
         @keyframes bagMarquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(calc(-33.333% - 0.34rem));
-          }
+          from { transform: translateX(0); }
+          to { transform: translateX(calc(-25% - 0.25rem)); }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
           .bag-marquee {
-            padding: 0.9rem 0 1rem;
+            padding: 0.58rem 0 0.72rem;
           }
 
           .bag-marquee-track {
-            gap: 0.7rem;
-            padding: 0 0.7rem;
-            animation-duration: 25s;
+            gap: 0.52rem;
+            padding: 0 0.52rem;
+            animation-duration: 28s;
           }
 
           .bag-marquee-item {
-            width: 92px;
-            height: 116px;
-            border-radius: 10px;
+            width: 76px;
+            height: 94px;
+            border-radius: 7px;
+            box-shadow: none;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .bag-marquee-track {
-            animation: none;
-            overflow-x: auto;
             max-width: 100vw;
+            overflow-x: auto;
+            animation: none;
           }
         }
       `}</style>
